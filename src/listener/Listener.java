@@ -9,18 +9,11 @@ import javax.servlet.annotation.WebListener;
 
 @WebListener()
 public class Listener implements ServletContextListener {
-
-	// Public constructor is required by servlet spec
-	public Listener() {
-	}
-
-	// -------------------------------------------------------
-	// ServletContextListener implementation
-	// -------------------------------------------------------
 	public void contextInitialized(ServletContextEvent sce) {
+		// Initialize and save manager in context.
 		Manager manager = new Manager();
 		ServletContext context = sce.getServletContext();
-		context.setAttribute("manager", manager);
+		context.setAttribute(Key.MANAGER, manager);
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {

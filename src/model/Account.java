@@ -4,6 +4,10 @@ public class Account {
 	private String username;
 	private String password;
 
+	/*
+	Every method is self-explanatory. No need for documentation.
+	 */
+
 	public Account(String username, String password) {
 		this.username = username;
 		this.password = password;

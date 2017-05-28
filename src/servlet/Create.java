@@ -1,5 +1,6 @@
 package servlet;
 
+import listener.Key;
 import model.Account;
 import model.Manager;
 
@@ -17,14 +18,16 @@ public class Create extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext context = getServletContext();
 		RequestDispatcher dispatcher;
-		Manager manager = (Manager) context.getAttribute("manager");
+		Manager manager = (Manager) context.getAttribute(Key.MANAGER);
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
 		if (manager.usernameExists(new Account(username, password))) {
+			// If the account exists forward the user to the used web-page.
 			dispatcher = request.getRequestDispatcher("used.jsp");
 			dispatcher.forward(request, response);
 		} else {
+			// If not, create a new account.
 			manager.createAccount(username, password);
 			dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
