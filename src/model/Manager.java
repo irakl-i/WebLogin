@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Manager {
 	private List<Account> accounts;
 
 	public Manager() {
-		this.accounts = new ArrayList<>();
+		this.accounts = Collections.synchronizedList(new ArrayList<Account>());
 
 		// Test cases:
 		accounts.add(new Account("Patrick", "1234"));
